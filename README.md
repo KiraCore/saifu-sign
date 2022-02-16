@@ -1,2 +1,2 @@
-# saifu-verify
-KIRA Signature Verification Tool
+# saifu-sign
+KIRA Signature Generation & Verification Tool
