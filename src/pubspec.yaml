@@ -44,7 +44,7 @@ dependencies:
   simple_fontellico_progress_dialog: ^0.2.1
   tab_container: ^1.2.0
   universal_ui: ^0.0.8
-  url_launcher: ^6.0.20
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_lints: ^1.0.0
