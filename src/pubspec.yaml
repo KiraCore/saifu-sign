@@ -26,6 +26,9 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+dependency_overrides:
+  url_launcher_web: 2.0.6
+
 dependencies:
   archive: ^3.2.0
   bech32: ^0.2.1
