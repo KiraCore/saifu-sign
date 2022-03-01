@@ -75,6 +75,7 @@ class _SignSaifuState extends State<SignSaifu> {
           SizedBox(
             height: 10,
           ),
+          //TODO: Replace
           Visibility(
             visible: false,
             child: Container(
@@ -127,12 +128,15 @@ class _SignSaifuState extends State<SignSaifu> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [Icon(Icons.format_color_text_rounded), Text("Text")],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.upload_file_outlined),
-                    Text("File"),
-                  ],
+                Visibility(
+                  visible: false,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.upload_file_outlined),
+                      Text("File"),
+                    ],
+                  ),
                 ),
               ],
               color: Colors.grey[100],

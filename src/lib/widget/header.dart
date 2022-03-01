@@ -40,7 +40,7 @@ class _HeaderState extends State<Header> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: widget.signInterface == true ? Colors.white : Colors.black,
+                  color: widget.signInterface == true ? Colors.black : Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: TextButton(
@@ -57,14 +57,14 @@ class _HeaderState extends State<Header> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Sign",
-                      style: TextStyle(fontSize: 24, color: widget.signInterface == true ? Colors.grey[400] : Colors.white),
+                      style: TextStyle(fontSize: 24, color: widget.signInterface == true ? Colors.white : Colors.grey[400]),
                     ),
                   ),
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: widget.signInterface == true ? Colors.black : Colors.white,
+                  color: widget.signInterface == true ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 child: TextButton(
@@ -81,7 +81,7 @@ class _HeaderState extends State<Header> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Verify",
-                      style: TextStyle(fontSize: 24, color: widget.signInterface == true ? Colors.white : Colors.grey[400]),
+                      style: TextStyle(fontSize: 24, color: widget.signInterface == true ? Colors.grey[400] : Colors.white),
                     ),
                   ),
                 ),

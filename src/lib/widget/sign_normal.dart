@@ -184,12 +184,15 @@ class _SignNormalState extends State<SignNormal> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [Icon(Icons.format_color_text_rounded), Text("Text")],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.upload_file_outlined),
-                    Text("File"),
-                  ],
+                Visibility(
+                  visible: false,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.upload_file_outlined),
+                      Text("File"),
+                    ],
+                  ),
                 ),
               ],
               color: Colors.grey[100],
