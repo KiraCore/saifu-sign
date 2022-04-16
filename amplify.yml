@@ -1,21 +1,22 @@
 version: 1
 frontend:
   phases:
+    # IMPORTANT - Please verify your build commands
     build:
       commands: [
-          "echo 'Starting SAIFU SIGN build v0.0.1'",
           "printenv",
-          "cd $CODEBUILD_SRC_DIR/saifu-sign/src && ls -a",
-          "flutter pub get", 
-          "flutter build web --release",
+          "cd $CODEBUILD_SRC_DIR/saifu-sign && ls -a",
+          "chmod 555 -Rv ./scripts",
+          "make build", 
+          "make publish",
           "rm -fvr /html && mkdir -p /html",
-          "cp -rfv $CODEBUILD_SRC_DIR/saifu-sign/src/build/web/. /html",
+          "unzip ./bin/html-web-app.zip -d /html",
           "rm -rfv $CODEBUILD_SRC_DIR/saifu-sign && mkdir -p $CODEBUILD_SRC_DIR/saifu-sign",
           "cp -rfv /html/. $CODEBUILD_SRC_DIR/saifu-sign",
-          "cd $CODEBUILD_SRC_DIR/saifu-sign && ls -a",
-          "echo 'Finished SAIFU SIGN build v0.0.1'"
+          "cd $CODEBUILD_SRC_DIR/saifu-sign && ls -a"
           ]
   artifacts:
+    # IMPORTANT - Please verify your build output directory
     baseDirectory: /
     files:
       - '**/*'

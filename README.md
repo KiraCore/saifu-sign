@@ -1,6 +1,12 @@
 # saifu-verify
 KIRA Signature Verification Tool
 
+## Releases
+
+All files in the [KIRA releases](https://github.com/KiraCore/saifu-sign/releases) are always signed with [cosign](https://github.com/sigstore/cosign/releases) and listed with a corresponding `SHA256` checksum. You should NEVER install anything on your machine unless you verified integrity of the files!
+
+To learn more about how to install cosign and verify integrity of files click [here](./COSIGN.md)
+
 ## Deployment
 
 The automated deployment pipeline supports `dev` & `master` branch only, built code is published via the corresponding DNS addresses:
@@ -12,4 +18,5 @@ To modify build process refer to `./amplify.yml` file which overrides default bu
 
 ## Build Image
 
-The build process uses a dedicated Docker image [kiracore/docker:dev-base-image](https://github.com/KiraCore/docker/blob/dev/base-image/container/deployment.sh), in case of any issues with dependencies please refer to the corresponding repository.
+The build process uses a dedicated Docker image [ghcr.io/kiracore/docker/base-image:v0.9.2-rc.2](https://github.com/kiracore/docker/pkgs/container/docker%2Fbase-image/19058504?tag=v0.9.2-rc.2), in case of any issues with dependencies please refer to the corresponding repository.
+
