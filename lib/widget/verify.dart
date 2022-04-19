@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -230,7 +231,13 @@ class _VerifyInterfaceState extends State<VerifyInterface> {
                           child: Column(children: [
                             IconButton(
                                 onPressed: () async {
-                                  signedMessageController.text = await showDialog(context: context, builder: (BuildContext context) => ScanDialog());
+                                  var value = await showDialog(context: context, builder: (BuildContext context) => ScanDialog());
+                                  final decoded = json.decode(value);
+                                  HashMap data = HashMap.from(decoded['data']);
+                                  setState(() {
+                                    signedMessageController.text = value;
+                                    addressController.text = data['address'];
+                                  });
                                 },
                                 icon: Icon(Icons.qr_code_scanner_rounded))
                           ])),
