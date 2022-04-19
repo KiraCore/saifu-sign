@@ -17,19 +17,25 @@ class _SignSaifuScanState extends State<SignSaifuScan> {
   Widget build(BuildContext context) {
     return AlertDialog(
       elevation: 50,
-      shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white, width: 5), borderRadius: BorderRadius.all(Radius.circular(32.0))),
+      shape: RoundedRectangleBorder(side: BorderSide(color: Colors.white, width: 5), borderRadius: BorderRadius.all(Radius.circular(10.0))),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Icon(Icons.close))
+            ],
+          ),
+          SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.all(0.0),
             child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  )),
               padding: const EdgeInsets.all(5.0),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 350, maxHeight: 300),
@@ -69,9 +75,9 @@ class _SignSaifuScanState extends State<SignSaifuScan> {
                         style: ButtonStyle(
                           overlayColor: MaterialStateProperty.all(Colors.transparent),
                         ),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => Navigator.of(context).pop(false),
                         child: Text(
-                          "Back",
+                          "Close",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 15,

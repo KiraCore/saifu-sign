@@ -25,8 +25,8 @@ class _HeaderState extends State<Header> {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            border: Border.all(color: Colors.grey[400]),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.all(color: Colors.grey[300]),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
@@ -41,7 +41,7 @@ class _HeaderState extends State<Header> {
               Container(
                 decoration: BoxDecoration(
                   color: widget.signInterface == true ? Colors.black : Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: TextButton(
                   style: TextButton.styleFrom(
@@ -65,7 +65,7 @@ class _HeaderState extends State<Header> {
               Container(
                 decoration: BoxDecoration(
                   color: widget.signInterface == true ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: TextButton(
                   style: TextButton.styleFrom(
