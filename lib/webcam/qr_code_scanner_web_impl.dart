@@ -4,6 +4,8 @@
 // - https://medium.com/@mk.pyts/how-to-access-webcam-video-stream-in-flutter-for-web-1bdc74f2e9c7
 // - https://kevinwilliams.dev/blog/taking-photos-with-flutter-web
 // - https://github.com/cozmo/jsQR
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, unnecessary_this, sized_box_for_whitespace, avoid_print
+
 import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, no_logic_in_create_state, unnecessary_this, avoid_unnecessary_containers, prefer_const_constructors
+
 import 'package:flutter/widgets.dart';
 
 class QrCodeCameraWebImpl extends StatefulWidget {
@@ -24,7 +26,4 @@ class QrCodeCameraWebImpl extends StatefulWidget {
       ),
     );
   }
-
 }
-
-

@@ -42,48 +42,50 @@ class _SignSaifuState extends State<SignSaifu> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
-            ),
-            child: TextField(
-              maxLines: 1,
-              controller: addressController,
-              focusNode: fAddress,
-              textInputAction: TextInputAction.done,
-              onSubmitted: (_) {
-                fAddress.unfocus();
-              },
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(20),
-                hintText: "Enter your public address {optional}",
-                suffixIcon: IconButton(
-                  onPressed: () async {
-                    addressController.text = await showDialog(context: context, builder: (BuildContext context) => ScanDialog());
-                  },
-                  icon: Icon(
-                    Icons.qr_code_scanner_rounded,
-                  ),
+          Visibility(
+            visible: false,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
                 ),
-                border: InputBorder.none,
+              ),
+              child: TextField(
+                maxLines: 1,
+                controller: addressController,
+                focusNode: fAddress,
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) {
+                  fAddress.unfocus();
+                },
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(20),
+                  hintText: "Enter your public address {optional}",
+                  suffixIcon: IconButton(
+                    onPressed: () async {
+                      addressController.text = await showDialog(context: context, builder: (BuildContext context) => ScanDialog());
+                    },
+                    icon: Icon(
+                      Icons.qr_code_scanner_rounded,
+                    ),
+                  ),
+                  border: InputBorder.none,
+                ),
               ),
             ),
           ),
           SizedBox(
             height: 10,
           ),
-          //TODO: Replace
           Visibility(
-            visible: false,
+            visible: true,
             child: Container(
               width: 600,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                border: Border.all(color: Colors.grey[300], width: 1),
                 borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+                  Radius.circular(10),
                 ),
               ),
               child: TextField(
@@ -98,12 +100,16 @@ class _SignSaifuState extends State<SignSaifu> {
                   fMessage.unfocus();
                   FocusScope.of(context).requestFocus(fAddress);
                 },
+                onChanged: (_) {
+                  setState(() {});
+                },
                 decoration: InputDecoration(
-                    hintText: "Add the message you want to sign",
+                    hintText: "Enter your message",
                     contentPadding: EdgeInsets.all(20),
                     suffixIcon: IconButton(
                       onPressed: () {
                         messageController.clear();
+                        setState(() {});
                       },
                       icon: Icon(
                         Icons.clear_rounded,
@@ -116,135 +122,136 @@ class _SignSaifuState extends State<SignSaifu> {
           SizedBox(
             height: 10,
           ),
-          SizedBox(
-            width: 500,
-            height: 150,
-            child: TabContainer(
-              tabExtent: 50,
-              tabEdge: TabEdge.left,
-              controller: tabNavigator,
-              tabs: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(Icons.format_color_text_rounded), Text("Text")],
-                ),
-                Visibility(
-                  visible: false,
-                  child: Column(
+          Visibility(
+            visible: false,
+            child: SizedBox(
+              width: 500,
+              height: 150,
+              child: TabContainer(
+                tabExtent: 50,
+                tabEdge: TabEdge.left,
+                controller: tabNavigator,
+                tabs: [
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.upload_file_outlined),
-                      Text("File"),
-                    ],
+                    children: [Icon(Icons.format_color_text_rounded), Text("Text")],
                   ),
-                ),
-              ],
-              color: Colors.grey[100],
-              childPadding: EdgeInsets.all(10),
-              enableFeedback: true,
-              children: [
-                Container(
-                  width: 600,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
+                  Visibility(
+                    visible: false,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.upload_file_outlined),
+                        Text("File"),
+                      ],
                     ),
                   ),
-                  child: TextField(
-                    maxLines: 4,
-                    style: TextStyle(
-                      fontSize: 18,
+                ],
+                color: Colors.grey[100],
+                childPadding: EdgeInsets.all(10),
+                enableFeedback: true,
+                children: [
+                  Container(
+                    width: 600,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
                     ),
-                    controller: messageController,
-                    focusNode: fMessage,
-                    textInputAction: TextInputAction.next,
-                    onTap: () {
-                      setState(() {
-                        signed = false;
-                      });
-                    },
-                    onSubmitted: (_) {
-                      fMessage.unfocus();
-                      FocusScope.of(context).requestFocus(fAddress);
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Enter your message:",
-                        contentPadding: EdgeInsets.all(20),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            messageController.clear();
-                          },
-                          icon: Icon(
-                            Icons.clear_rounded,
+                    child: TextField(
+                      maxLines: 4,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                      controller: messageController,
+                      focusNode: fMessage,
+                      textInputAction: TextInputAction.next,
+                      onTap: () {
+                        setState(() {
+                          signed = false;
+                        });
+                      },
+                      onSubmitted: (_) {
+                        fMessage.unfocus();
+                        FocusScope.of(context).requestFocus(fAddress);
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Enter your message:",
+                          contentPadding: EdgeInsets.all(20),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              messageController.clear();
+                            },
+                            icon: Icon(
+                              Icons.clear_rounded,
+                            ),
                           ),
-                        ),
-                        border: InputBorder.none),
+                          border: InputBorder.none),
+                    ),
                   ),
-                ),
-                DropZone(
-                    onDroppedFile: (dynamic val) => setState(() {
-                          fileData = val;
-                        }),
-                    onBoolChange: (bool val) => setState(() {
-                          signed = val;
-                        })),
-              ],
+                  DropZone(
+                      onDroppedFile: (dynamic val) => setState(() {
+                            fileData = val;
+                          }),
+                      onBoolChange: (bool val) => setState(() {
+                            signed = val;
+                          })),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color.fromRGBO(41, 141, 255, 0.67), Color.fromRGBO(52, 74, 230, 1)],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.1),
-                          spreadRadius: 2,
-                          blurRadius: 7,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
+              Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: messageController.text.isNotEmpty ? [Color.fromRGBO(41, 141, 255, 0.67), Color.fromRGBO(52, 74, 230, 1)] : [Color.fromRGBO(41, 141, 255, 0.32), Color.fromRGBO(52, 74, 230, 0.5)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextButton(
-                        style: ButtonStyle(
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        onPressed: () async {
-                          Map<String, dynamic> qrMessage = {
-                            "type": "sign_txt",
-                            "data": {"network": "eth", "address": addressController.text, "msg": messageController.text, "version": "1", "format": "saifu"}
-                            //"0x" + hex.encode(messageController.text.codeUnits)
-                          };
-                          List saifuQR = [jsonEncode(qrMessage)];
-                          await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuDialog(saifuQR)).then((value) async {
-                            if (value == true) {
-                              var data = await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuScan());
-
-                              setState(() {
-                                signedMessageController.text = data;
-                                signed = true;
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.1),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: messageController.text.isNotEmpty
+                          ? () async {
+                              String encodedMessage = base64.encode(utf8.encode(messageController.text));
+                              Map<String, dynamic> qrMessage = {
+                                "type": "sign_txt",
+                                "data": {"network": "eth", "address": addressController.text, "msg": encodedMessage, "version": "1", "format": "saifu"}
+                              };
+                              List saifuQR = [jsonEncode(qrMessage)];
+                              await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuDialog(saifuQR)).then((value) async {
+                                if (value == true) {
+                                  var data = await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuScan());
+                                  if (data == false) {
+                                  } else {
+                                    setState(() {
+                                      signedMessageController.text = data;
+                                      signed = true;
+                                    });
+                                  }
+                                }
                               });
                             }
-                          });
-                        },
-                        child: Text(
-                          "Saifu Sign",
-                          style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
+                          : () {},
+                      child: Text(
+                        "Saifu Sign",
+                        style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                     ),
                   )),
