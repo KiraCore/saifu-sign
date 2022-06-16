@@ -41,7 +41,7 @@ class _SignNormalState extends State<SignNormal> {
     Wallet ethereumWallet = Wallet.fromMnemonic(addressController.text);
     String encodedMessage = base64.encode(utf8.encode(messageController.text));
     String address = await ethereumWallet.getAddress();
-    String signature = EthSigUtil.signMessage(privateKey: ethereumWallet.privateKey, message: Uint8List.fromList(messageController.text.codeUnits));
+    String signature = EthSigUtil.signPersonalMessage(privateKey: ethereumWallet.privateKey, message: Uint8List.fromList(messageController.text.codeUnits));
     Map<String, dynamic> qrMessage = {
       "type": "sign_txt",
       "data": {"network": "eth", "address": address, "msg": encodedMessage, "sig": signature, "version": "1", "format": "saifu"}

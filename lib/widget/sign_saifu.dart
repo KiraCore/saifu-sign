@@ -234,7 +234,14 @@ class _SignSaifuState extends State<SignSaifu> {
                                 "type": "sign_txt",
                                 "data": {"network": "eth", "address": addressController.text, "msg": encodedMessage, "version": "1", "format": "saifu"}
                               };
-                              List saifuQR = [jsonEncode(qrMessage)];
+                              var framesData = [
+                                "sign_txt",
+                                1,
+                                1,
+                                1,
+                                [qrMessage]
+                              ];
+                              List saifuQR = [jsonEncode(framesData)];
                               await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuDialog(saifuQR)).then((value) async {
                                 if (value == true) {
                                   var data = await showDialog(barrierDismissible: false, context: context, builder: (_) => SignSaifuScan());
@@ -362,8 +369,7 @@ class _SignSaifuState extends State<SignSaifu> {
                                     textAlign: TextAlign.center,
                                   ),
                                 );
-                                // Find the ScaffoldMessenger in the widget tree
-                                // and use it to show a SnackBar.
+
                                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                               },
                               child: Text(

@@ -140,7 +140,7 @@ packages:
       name: eth_sig_util
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   ethers:
     dependency: "direct main"
     description:

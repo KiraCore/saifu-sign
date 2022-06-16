@@ -38,7 +38,7 @@ class _VerifyInterfaceState extends State<VerifyInterface> {
 
       try {
         String signature = decode['data']['sig'];
-        String recoverAddress = EthSigUtil.ecRecover(signature: signature, message: Uint8List.fromList(messageController.text.codeUnits));
+        String recoverAddress = EthSigUtil.recoverPersonalSignature(signature: signature, message: Uint8List.fromList(messageController.text.codeUnits));
         if (recoverAddress.toLowerCase() == addressController.text.toLowerCase()) {
           final snackBar = SnackBar(
             width: 400,
@@ -79,7 +79,7 @@ class _VerifyInterfaceState extends State<VerifyInterface> {
       }
     } catch (e) {
       try {
-        String recoverAddress = EthSigUtil.ecRecover(signature: signedMessageController.text, message: Uint8List.fromList(messageController.text.codeUnits));
+        String recoverAddress = EthSigUtil.recoverSignature(signature: signedMessageController.text, message: Uint8List.fromList(messageController.text.codeUnits));
 
         if (recoverAddress.toLowerCase() == addressController.text.toLowerCase()) {
           final snackBar = SnackBar(
