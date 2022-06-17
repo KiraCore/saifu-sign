@@ -47,8 +47,6 @@ class _SignSaifuScanState extends State<SignSaifuScan> {
                         scan = false;
                         Navigator.pop(context, scanData);
                       }
-
-                      // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => SidebarPage()), (Route<dynamic> route) => false);
                     }
                   },
                 ),
