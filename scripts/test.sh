@@ -7,4 +7,4 @@ echo "INFO: Starting unit tests..."
 
 uname -a
 flutter doctor -v
-flutter test test/unit
+# flutter test test/unit
